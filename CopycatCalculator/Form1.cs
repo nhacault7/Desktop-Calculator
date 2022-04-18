@@ -2,9 +2,9 @@ namespace CopycatCalculator
 {
     public partial class frmMain : Form
     {
-        public int firstStoredOperand { get; set; }
-        public int secondStoredOperand { get; set; }
-        public int answer { get; set; }
+        public string firstStoredOperand { get; set; }
+        public string secondStoredOperand { get; set; }
+        public string answer { get; set; }
         public string storedOperator { get; set; }
         public bool isDefault { get; set; }
 
@@ -12,9 +12,9 @@ namespace CopycatCalculator
         {
             InitializeComponent();
 
-            firstStoredOperand = 0;
-            secondStoredOperand = 0;
-            answer = 0;
+            firstStoredOperand = String.Empty;
+            secondStoredOperand = String.Empty;
+            answer = String.Empty;
             storedOperator = String.Empty;
             isDefault = false;
             
@@ -35,23 +35,23 @@ namespace CopycatCalculator
 
             if (storedOperator == String.Empty)
             {
-                if (firstStoredOperand == 0)
+                if (firstStoredOperand == String.Empty)
                 {
-                    rtbOutput.Text = button.Text;
+                    firstStoredOperand = button.Text;
                 }
                 else
                 {
-                    rtbOutput.AppendText(button.Text);
+                    firstStoredOperand += button.Text;
                 }
 
-                firstStoredOperand = Convert.ToInt32(rtbOutput.Text);
+                rtbOutput.Text = firstStoredOperand;
             }
             else
             {
                 string[] currentEquation = rtbOutput.Lines;
                 string secondOperand = currentEquation[1];
 
-                if (secondStoredOperand == 0 || isDefault)
+                if (secondStoredOperand == String.Empty || isDefault)
                 {
                     secondOperand = button.Text;
                     isDefault = false;
@@ -61,7 +61,7 @@ namespace CopycatCalculator
                     secondOperand += button.Text;
                 }
 
-                secondStoredOperand = Convert.ToInt32(secondOperand);
+                secondStoredOperand = secondOperand;
                 string output = $"{storedOperator} {firstStoredOperand}\n{secondStoredOperand}";
                 rtbOutput.Text = output;
             }
@@ -73,16 +73,16 @@ namespace CopycatCalculator
             {
                 if (e.KeyChar >= 48 && e.KeyChar <= 57)
                 {
-                    if (firstStoredOperand == 0)
+                    if (firstStoredOperand == String.Empty)
                     {
-                        rtbOutput.Text = e.KeyChar.ToString();
+                        firstStoredOperand = e.KeyChar.ToString();
                     }
                     else
                     {
-                        rtbOutput.AppendText(e.KeyChar.ToString());
+                        firstStoredOperand += e.KeyChar.ToString();
                     }
 
-                    firstStoredOperand = Convert.ToInt32(rtbOutput.Text);
+                    rtbOutput.Text = firstStoredOperand;
                 }
             }
             else
@@ -90,7 +90,7 @@ namespace CopycatCalculator
                 string[] currentEquation = rtbOutput.Lines;
                 string secondOperand = currentEquation[1];
 
-                if (secondStoredOperand == 0 || isDefault)
+                if (secondStoredOperand == String.Empty || isDefault)
                 {
                     secondOperand = e.KeyChar.ToString();
                     isDefault = false;
@@ -100,7 +100,7 @@ namespace CopycatCalculator
                     secondOperand += e.KeyChar.ToString();
                 }
 
-                secondStoredOperand = Convert.ToInt32(secondOperand);
+                secondStoredOperand = secondOperand;
                 string output = $"{storedOperator} {firstStoredOperand}\n{secondStoredOperand}";
                 rtbOutput.Text = output;
             }
@@ -126,16 +126,16 @@ namespace CopycatCalculator
             switch (storedOperator)
             {
                 case "+":
-                    answer = firstStoredOperand + secondStoredOperand;
+                    answer = (Convert.ToInt32(firstStoredOperand) + Convert.ToInt32(secondStoredOperand)).ToString();
                     break;
                 case "-":
-                    answer = firstStoredOperand - secondStoredOperand;
+                    answer = (Convert.ToInt32(firstStoredOperand) - Convert.ToInt32(secondStoredOperand)).ToString();
                     break;
                 case "*":
-                    answer = firstStoredOperand * secondStoredOperand;
-                    break;
-                case "/":
-                    answer = firstStoredOperand / secondStoredOperand;
+                    answer = (Convert.ToInt32(firstStoredOperand) * Convert.ToInt32(secondStoredOperand)).ToString();
+                    break;   
+                case "/":    
+                    answer = (Convert.ToInt32(firstStoredOperand) / Convert.ToInt32(secondStoredOperand)).ToString();
                     break;
             }
 
@@ -147,23 +147,23 @@ namespace CopycatCalculator
         {
             try
             {
-                if (answer != 0)
+                if (answer != String.Empty)
                 {
-                    answer = Convert.ToInt32(Convert.ToString(answer, 2));
+                    answer = Convert.ToString(Convert.ToInt32(answer), 2);
                     rtbOutput.Text = answer.ToString();
                     return;
                 }
 
-                if (secondStoredOperand != 0)
+                if (secondStoredOperand != String.Empty)
                 {
-                    secondStoredOperand = Convert.ToInt32(Convert.ToString(secondStoredOperand, 2));
+                    secondStoredOperand = Convert.ToString(Convert.ToInt32(secondStoredOperand), 2);
                     rtbOutput.Text = secondStoredOperand.ToString();
                     return;
                 }
 
-                if (firstStoredOperand != 0)
+                if (firstStoredOperand != String.Empty)
                 {
-                    firstStoredOperand = Convert.ToInt32(Convert.ToString(firstStoredOperand, 2));
+                    firstStoredOperand = Convert.ToString(Convert.ToInt32(firstStoredOperand), 2);
                     rtbOutput.Text = firstStoredOperand.ToString();
                     return;
                 }
@@ -183,28 +183,28 @@ namespace CopycatCalculator
         {
             try
             {
-                if (answer != 0)
+                if (answer != String.Empty)
                 {
-                    answer = Convert.ToInt32(Convert.ToString(answer, 10));
+                    answer = Convert.ToInt32(answer, 2).ToString();
                     rtbOutput.Text = answer.ToString();
                     return;
                 }
 
-                if (secondStoredOperand != 0)
+                if (secondStoredOperand != String.Empty)
                 {
-                    secondStoredOperand = Convert.ToInt32(Convert.ToString(secondStoredOperand, 10));
+                    secondStoredOperand = Convert.ToInt32(secondStoredOperand, 2).ToString();
                     rtbOutput.Text = secondStoredOperand.ToString();
                     return;
                 }
 
-                if (firstStoredOperand != 0)
+                if (firstStoredOperand != String.Empty)
                 {
-                    firstStoredOperand = Convert.ToInt32(Convert.ToString(firstStoredOperand, 10));
+                    firstStoredOperand = Convert.ToInt32(firstStoredOperand, 2).ToString();
                     rtbOutput.Text = firstStoredOperand.ToString();
                     return;
                 }
             }
-            catch (OverflowException)
+            catch (FormatException)
             {
                 rtbOutput.Text = "Error";
             }
