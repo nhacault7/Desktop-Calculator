@@ -22,5 +22,13 @@ namespace CopycatCalculator
             Button button = (Button) sender;
             rtbOutput.Text = button.Text;
         }
+
+        private void KeyboardInput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar >= 48 && e.KeyChar <= 57)
+            {
+                rtbOutput.Text = e.KeyChar.ToString();
+            }
+        }
     }
 }

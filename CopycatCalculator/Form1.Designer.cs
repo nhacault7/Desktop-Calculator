@@ -279,6 +279,7 @@
             this.KeyPreview = true;
             this.Name = "frmMain";
             this.Text = "Form1";
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.KeyboardInput_KeyPress);
             this.ResumeLayout(false);
 
         }
