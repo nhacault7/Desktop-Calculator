@@ -4,7 +4,9 @@ namespace CopycatCalculator
     {
         public int firstStoredOperand { get; set; }
         public int secondStoredOperand { get; set; }
+        public int answer { get; set; }
         public string storedOperator { get; set; }
+        public bool isDefault { get; set; }
 
         public frmMain()
         {
@@ -12,7 +14,9 @@ namespace CopycatCalculator
 
             firstStoredOperand = 0;
             secondStoredOperand = 0;
+            answer = 0;
             storedOperator = String.Empty;
+            isDefault = false;
             
             lsbHistory.Font = new Font("Times New Roman", 16);
             lsbHistory.ForeColor = Color.White;
@@ -47,10 +51,10 @@ namespace CopycatCalculator
                 string[] currentEquation = rtbOutput.Lines;
                 string secondOperand = currentEquation[1];
 
-                if (secondStoredOperand == 0)
+                if (secondStoredOperand == 0 || isDefault)
                 {
                     secondOperand = button.Text;
-                    
+                    isDefault = false;
                 }
                 else
                 {
@@ -86,10 +90,10 @@ namespace CopycatCalculator
                 string[] currentEquation = rtbOutput.Lines;
                 string secondOperand = currentEquation[1];
 
-                if (secondStoredOperand == 0)
+                if (secondStoredOperand == 0 || isDefault)
                 {
                     secondOperand = e.KeyChar.ToString();
-
+                    isDefault = false;
                 }
                 else
                 {
@@ -109,6 +113,8 @@ namespace CopycatCalculator
             if (storedOperator == String.Empty)
             {
                 storedOperator = button.Text;
+                secondStoredOperand = firstStoredOperand;
+                isDefault = true;
 
                 string output = $"{storedOperator} {firstStoredOperand}\n{firstStoredOperand}";
                 rtbOutput.Text = output;
@@ -117,7 +123,6 @@ namespace CopycatCalculator
 
         private void Calculate_Click(object sender, EventArgs e)
         {
-            int answer = 0;
             switch (storedOperator)
             {
                 case "+":
