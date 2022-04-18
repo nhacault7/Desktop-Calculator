@@ -48,6 +48,8 @@
             this.btnBIN = new System.Windows.Forms.Button();
             this.btnDEC = new System.Windows.Forms.Button();
             this.btnLOC = new System.Windows.Forms.Button();
+            this.btnDecimal = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // rtbOutput
@@ -299,12 +301,39 @@
             this.btnLOC.UseVisualStyleBackColor = false;
             this.btnLOC.Click += new System.EventHandler(this.ConvertToLocational_Click);
             // 
+            // btnDecimal
+            // 
+            this.btnDecimal.BackColor = System.Drawing.Color.Gray;
+            this.btnDecimal.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDecimal.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnDecimal.Location = new System.Drawing.Point(174, 273);
+            this.btnDecimal.Name = "btnDecimal";
+            this.btnDecimal.Size = new System.Drawing.Size(75, 47);
+            this.btnDecimal.TabIndex = 20;
+            this.btnDecimal.Text = ".";
+            this.btnDecimal.UseVisualStyleBackColor = false;
+            // 
+            // btnClear
+            // 
+            this.btnClear.BackColor = System.Drawing.Color.Gray;
+            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClear.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnClear.Location = new System.Drawing.Point(12, 273);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 47);
+            this.btnClear.TabIndex = 21;
+            this.btnClear.Text = "CLR";
+            this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.Clear_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(552, 450);
+            this.Controls.Add(this.btnClear);
+            this.Controls.Add(this.btnDecimal);
             this.Controls.Add(this.btnLOC);
             this.Controls.Add(this.btnDEC);
             this.Controls.Add(this.btnBIN);
@@ -355,5 +384,7 @@
         private Button btnBIN;
         private Button btnDEC;
         private Button btnLOC;
+        private Button btnDecimal;
+        private Button btnClear;
     }
 }
