@@ -2,6 +2,8 @@ namespace CopycatCalculator
 {
     public partial class frmMain : Form
     {
+        public int storedOperand = 0;
+
         public frmMain()
         {
             InitializeComponent();
@@ -14,13 +16,13 @@ namespace CopycatCalculator
             rtbOutput.ForeColor = Color.White;
             rtbOutput.RightToLeft = RightToLeft.Yes;
             rtbOutput.ReadOnly = true;
-            rtbOutput.Text = "0";
+            rtbOutput.Text = storedOperand.ToString();
         }
 
         private void ButtonInput_Click(object sender, EventArgs e)
         {
             Button button = (Button) sender;
-            if (rtbOutput.Text == "0")
+            if (storedOperand == 0)
             {
                 rtbOutput.Text = button.Text;
             }
@@ -28,13 +30,15 @@ namespace CopycatCalculator
             {
                 rtbOutput.AppendText(button.Text);
             }
+
+            storedOperand = Convert.ToInt32(rtbOutput.Text);
         }
 
         private void KeyboardInput_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar >= 48 && e.KeyChar <= 57)
             {
-                if (rtbOutput.Text == "0")
+                if (storedOperand == 0)
                 {
                     rtbOutput.Text = e.KeyChar.ToString();
                 }
@@ -43,6 +47,13 @@ namespace CopycatCalculator
                     rtbOutput.AppendText(e.KeyChar.ToString());
                 }
             }
+
+            storedOperand = Convert.ToInt32(rtbOutput.Text);
+        }
+
+        private void OperatorInput_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

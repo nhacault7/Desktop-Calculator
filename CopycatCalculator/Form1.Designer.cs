@@ -51,7 +51,6 @@
             // 
             this.rtbOutput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.rtbOutput.Location = new System.Drawing.Point(12, 12);
-            this.rtbOutput.Multiline = false;
             this.rtbOutput.Name = "rtbOutput";
             this.rtbOutput.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.rtbOutput.Size = new System.Drawing.Size(318, 96);
@@ -241,6 +240,7 @@
             this.btnAdd.TabIndex = 15;
             this.btnAdd.Text = "+";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.OperatorInput_Click);
             // 
             // btnEnter
             // 
