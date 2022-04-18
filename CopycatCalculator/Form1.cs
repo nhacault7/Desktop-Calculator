@@ -2,14 +2,16 @@ namespace CopycatCalculator
 {
     public partial class frmMain : Form
     {
-        public int storedOperand { get; set; }
+        public int firstStoredOperand { get; set; }
+        public int secondStoredOperand { get; set; }
         public string storedOperator { get; set; }
 
         public frmMain()
         {
             InitializeComponent();
 
-            storedOperand = 0;
+            firstStoredOperand = 0;
+            secondStoredOperand = 0;
             storedOperator = String.Empty;
             
             lsbHistory.Font = new Font("Times New Roman", 16);
@@ -20,30 +22,52 @@ namespace CopycatCalculator
             rtbOutput.ForeColor = Color.White;
             rtbOutput.RightToLeft = RightToLeft.Yes;
             rtbOutput.ReadOnly = true;
-            rtbOutput.Text = storedOperand.ToString();
+            rtbOutput.Text = firstStoredOperand.ToString();
         }
 
         private void ButtonInput_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
 
-            if (storedOperand == 0)
+            if (storedOperator == String.Empty)
             {
-                rtbOutput.Text = button.Text;
+                if (firstStoredOperand == 0)
+                {
+                    rtbOutput.Text = button.Text;
+                }
+                else
+                {
+                    rtbOutput.AppendText(button.Text);
+                }
+
+                firstStoredOperand = Convert.ToInt32(rtbOutput.Text);
             }
             else
             {
-                rtbOutput.AppendText(button.Text);
-            }
+                string[] currentEquation = rtbOutput.Lines;
+                string secondOperand = currentEquation[1];
 
-            storedOperand = Convert.ToInt32(rtbOutput.Text);
+                if (secondStoredOperand == 0)
+                {
+                    secondOperand = button.Text;
+                    
+                }
+                else
+                {
+                    secondOperand += button.Text;
+                }
+
+                secondStoredOperand = Convert.ToInt32(secondOperand);
+                string output = $"{storedOperator} {firstStoredOperand}\n{secondStoredOperand}";
+                rtbOutput.Text = output;
+            }
         }
 
         private void KeyboardInput_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar >= 48 && e.KeyChar <= 57)
             {
-                if (storedOperand == 0)
+                if (firstStoredOperand == 0)
                 {
                     rtbOutput.Text = e.KeyChar.ToString();
                 }
@@ -53,7 +77,7 @@ namespace CopycatCalculator
                 }
             }
 
-            storedOperand = Convert.ToInt32(rtbOutput.Text);
+            firstStoredOperand = Convert.ToInt32(rtbOutput.Text);
         }
 
         private void OperatorInput_Click(object sender, EventArgs e)
@@ -64,7 +88,7 @@ namespace CopycatCalculator
             {
                 storedOperator = button.Text;
 
-                string output = $"{storedOperator} {storedOperand}\n{storedOperand}";
+                string output = $"{storedOperator} {firstStoredOperand}\n{firstStoredOperand}";
                 rtbOutput.Text = output;
             }
         }
