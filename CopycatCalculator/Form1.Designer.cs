@@ -69,7 +69,8 @@
             this.lsbHistory.ItemHeight = 15;
             this.lsbHistory.Location = new System.Drawing.Point(336, 12);
             this.lsbHistory.Name = "lsbHistory";
-            this.lsbHistory.Size = new System.Drawing.Size(204, 379);
+            this.lsbHistory.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lsbHistory.Size = new System.Drawing.Size(311, 379);
             this.lsbHistory.TabIndex = 1;
             // 
             // btnSeven
@@ -332,7 +333,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(552, 400);
+            this.ClientSize = new System.Drawing.Size(659, 400);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnDecimal);
             this.Controls.Add(this.btnLOC);
