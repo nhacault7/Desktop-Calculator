@@ -114,5 +114,28 @@ namespace CopycatCalculator
                 rtbOutput.Text = output;
             }
         }
+
+        private void Calculate_Click(object sender, EventArgs e)
+        {
+            int answer = 0;
+            switch (storedOperator)
+            {
+                case "+":
+                    answer = firstStoredOperand + secondStoredOperand;
+                    break;
+                case "-":
+                    answer = firstStoredOperand - secondStoredOperand;
+                    break;
+                case "*":
+                    answer = firstStoredOperand * secondStoredOperand;
+                    break;
+                case "/":
+                    answer = firstStoredOperand / secondStoredOperand;
+                    break;
+            }
+
+            rtbOutput.Text = answer.ToString();
+            lsbHistory.Items.Add($"{firstStoredOperand} {storedOperator} {secondStoredOperand} = {answer}");
+        }
     }
 }
