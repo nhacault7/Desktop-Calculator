@@ -312,6 +312,7 @@
             this.btnDecimal.TabIndex = 20;
             this.btnDecimal.Text = ".";
             this.btnDecimal.UseVisualStyleBackColor = false;
+            this.btnDecimal.Click += new System.EventHandler(this.ButtonInput_Click);
             // 
             // btnClear
             // 

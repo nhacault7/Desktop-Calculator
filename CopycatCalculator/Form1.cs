@@ -7,6 +7,7 @@ namespace CopycatCalculator
         public string answer { get; set; }
         public string storedOperator { get; set; }
         public bool isDefault { get; set; }
+        public bool isDecimal { get; set; }
 
         public frmMain()
         {
@@ -17,6 +18,7 @@ namespace CopycatCalculator
             answer = String.Empty;
             storedOperator = String.Empty;
             isDefault = false;
+            isDecimal = false;
             
             lsbHistory.Font = new Font("Times New Roman", 16);
             lsbHistory.ForeColor = Color.White;
@@ -26,7 +28,7 @@ namespace CopycatCalculator
             rtbOutput.ForeColor = Color.White;
             rtbOutput.RightToLeft = RightToLeft.Yes;
             rtbOutput.ReadOnly = true;
-            rtbOutput.Text = firstStoredOperand.ToString();
+            rtbOutput.Text = "0";
         }
 
         private void ButtonInput_Click(object sender, EventArgs e)
@@ -35,6 +37,20 @@ namespace CopycatCalculator
 
             if (storedOperator == String.Empty)
             {
+                if (button.Text == "." && isDecimal == false)
+                {
+                    if (firstStoredOperand == String.Empty)
+                    {
+                        firstStoredOperand = "0";
+                    }
+
+                    isDecimal = true;
+                }
+                else if (button.Text == "." && isDecimal == true)
+                {
+                    return;
+                }
+
                 if (firstStoredOperand == String.Empty)
                 {
                     firstStoredOperand = button.Text;
@@ -48,20 +64,31 @@ namespace CopycatCalculator
             }
             else
             {
-                string[] currentEquation = rtbOutput.Lines;
-                string secondOperand = currentEquation[1];
-
-                if (secondStoredOperand == String.Empty || isDefault)
+                if (button.Text == "." && isDecimal == false)
                 {
-                    secondOperand = button.Text;
+                    if (isDefault)
+                    {
+                        secondStoredOperand = "0";
+                        isDefault = false;
+                    }
+
+                    isDecimal = true;
+                }
+                else if (button.Text == "." && isDecimal == true)
+                {
+                    return;
+                }
+
+                if (isDefault)
+                {
+                    secondStoredOperand = button.Text;
                     isDefault = false;
                 }
                 else
                 {
-                    secondOperand += button.Text;
+                    secondStoredOperand += button.Text;
                 }
 
-                secondStoredOperand = secondOperand;
                 string output = $"{storedOperator} {firstStoredOperand}\n{secondStoredOperand}";
                 rtbOutput.Text = output;
             }
@@ -71,8 +98,22 @@ namespace CopycatCalculator
         {
             if (storedOperator == String.Empty)
             {
-                if (e.KeyChar >= 48 && e.KeyChar <= 57)
+                if (e.KeyChar >= 48 && e.KeyChar <= 57 || e.KeyChar == 46)
                 {
+                    if (e.KeyChar == 46 && isDecimal == false)
+                    {
+                        if (firstStoredOperand == String.Empty)
+                        {
+                            firstStoredOperand = "0";
+                        }
+
+                        isDecimal = true;
+                    }
+                    else if (e.KeyChar == 46 && isDecimal == true)
+                    {
+                        return;
+                    }
+
                     if (firstStoredOperand == String.Empty)
                     {
                         firstStoredOperand = e.KeyChar.ToString();
@@ -87,22 +128,36 @@ namespace CopycatCalculator
             }
             else
             {
-                string[] currentEquation = rtbOutput.Lines;
-                string secondOperand = currentEquation[1];
-
-                if (secondStoredOperand == String.Empty || isDefault)
+                if (e.KeyChar >= 48 && e.KeyChar <= 57 || e.KeyChar == 46)
                 {
-                    secondOperand = e.KeyChar.ToString();
-                    isDefault = false;
-                }
-                else
-                {
-                    secondOperand += e.KeyChar.ToString();
-                }
+                    if (e.KeyChar == 46 && isDecimal == false)
+                    {
+                        if (isDefault)
+                        {
+                            secondStoredOperand = "0";
+                            isDefault = false;
+                        }
 
-                secondStoredOperand = secondOperand;
-                string output = $"{storedOperator} {firstStoredOperand}\n{secondStoredOperand}";
-                rtbOutput.Text = output;
+                        isDecimal = true;
+                    }
+                    else if (e.KeyChar == 46 && isDecimal == true)
+                    {
+                        return;
+                    }
+
+                    if (secondStoredOperand == String.Empty || isDefault)
+                    {
+                        secondStoredOperand = e.KeyChar.ToString();
+                        isDefault = false;
+                    }
+                    else
+                    {
+                        secondStoredOperand += e.KeyChar.ToString();
+                    }
+
+                    string output = $"{storedOperator} {firstStoredOperand}\n{secondStoredOperand}";
+                    rtbOutput.Text = output;
+                }
             }
         }
 
@@ -118,6 +173,8 @@ namespace CopycatCalculator
 
                 string output = $"{storedOperator} {firstStoredOperand}\n{firstStoredOperand}";
                 rtbOutput.Text = output;
+
+                isDecimal = false;
             }
         }
 
@@ -126,21 +183,22 @@ namespace CopycatCalculator
             switch (storedOperator)
             {
                 case "+":
-                    answer = (Convert.ToInt32(firstStoredOperand) + Convert.ToInt32(secondStoredOperand)).ToString();
+                    answer = (Convert.ToDouble(firstStoredOperand) + Convert.ToDouble(secondStoredOperand)).ToString();
                     break;
                 case "-":
-                    answer = (Convert.ToInt32(firstStoredOperand) - Convert.ToInt32(secondStoredOperand)).ToString();
+                    answer = (Convert.ToDouble(firstStoredOperand) - Convert.ToDouble(secondStoredOperand)).ToString();
                     break;
                 case "*":
-                    answer = (Convert.ToInt32(firstStoredOperand) * Convert.ToInt32(secondStoredOperand)).ToString();
+                    answer = (Convert.ToDouble(firstStoredOperand) * Convert.ToDouble(secondStoredOperand)).ToString();
                     break;   
                 case "/":    
-                    answer = (Convert.ToInt32(firstStoredOperand) / Convert.ToInt32(secondStoredOperand)).ToString();
+                    answer = (Convert.ToDouble(firstStoredOperand) / Convert.ToDouble(secondStoredOperand)).ToString();
                     break;
             }
 
             rtbOutput.Text = answer.ToString();
             lsbHistory.Items.Add($"{firstStoredOperand} {storedOperator} {secondStoredOperand} = {answer}");
+            isDecimal = false;
         }
 
         private void ConvertToBinary_Click(object sender, EventArgs e)
@@ -217,6 +275,7 @@ namespace CopycatCalculator
             answer = String.Empty;
             storedOperator = String.Empty;
             isDefault = false;
+            isDecimal = false;
 
             rtbOutput.Text = "";
         }
