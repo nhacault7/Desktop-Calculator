@@ -8,6 +8,7 @@ namespace CopycatCalculator
         public string storedOperator { get; set; }
         public bool isDefault { get; set; }
         public bool isDecimal { get; set; }
+        public char[] locationalChars { get; set; }
 
         public frmMain()
         {
@@ -19,6 +20,7 @@ namespace CopycatCalculator
             storedOperator = String.Empty;
             isDefault = false;
             isDecimal = false;
+            locationalChars = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n' };
             
             lsbHistory.Font = new Font("Times New Roman", 16);
             lsbHistory.ForeColor = Color.White;
@@ -225,7 +227,7 @@ namespace CopycatCalculator
                     rtbOutput.Text = firstStoredOperand.ToString();
                     return;
                 }
-            } catch (OverflowException)
+            } catch
             {
                 rtbOutput.Text = "Error";
             }
@@ -234,7 +236,60 @@ namespace CopycatCalculator
 
         private void ConvertToLocational_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                if (answer != String.Empty)
+                {
+                    answer = Convert.ToString(Convert.ToInt32(answer), 2);
+                    char[] numbers = answer.ToCharArray();
+                    answer = String.Empty;
+                    for (int i = 0; i < numbers.Length; i++)
+                    {
+                        if (numbers[i] == '1')
+                        {
+                            answer += locationalChars[i];
+                        }
+                    }
+                    rtbOutput.Text = answer.ToString();
+                    return;
+                }
+
+                if (secondStoredOperand != String.Empty)
+                {
+                    secondStoredOperand = Convert.ToString(Convert.ToInt32(secondStoredOperand), 2);
+                    char[] numbers = secondStoredOperand.ToCharArray();
+                    secondStoredOperand = String.Empty;
+                    for (int i = 0; i < numbers.Length; i++)
+                    {
+                        if (numbers[i] == '1')
+                        {
+                            secondStoredOperand += locationalChars[i];
+                        }
+                    }
+                    rtbOutput.Text = secondStoredOperand.ToString();
+                    return;
+                }
+
+                if (firstStoredOperand != String.Empty)
+                {
+                    firstStoredOperand = Convert.ToString(Convert.ToInt32(firstStoredOperand), 2);
+                    char[] numbers = firstStoredOperand.ToCharArray();
+                    firstStoredOperand = String.Empty;
+                    for (int i = 0; i < numbers.Length; i++)
+                    {
+                        if (numbers[i] == '1')
+                        {
+                            firstStoredOperand += locationalChars[i];
+                        }
+                    }
+                    rtbOutput.Text = firstStoredOperand.ToString();
+                    return;
+                }
+            }
+            catch
+            {
+                rtbOutput.Text = "Error";
+            }
         }
 
         private void ConvertToDecimal_Click(object sender, EventArgs e)
