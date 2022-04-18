@@ -5,6 +5,7 @@ namespace CopycatCalculator
         public frmMain()
         {
             InitializeComponent();
+            
             lsbHistory.Font = new Font("Times New Roman", 16);
             lsbHistory.ForeColor = Color.White;
             lsbHistory.Items.Add("History");
@@ -14,6 +15,12 @@ namespace CopycatCalculator
             rtbOutput.RightToLeft = RightToLeft.Yes;
             rtbOutput.ReadOnly = true;
             rtbOutput.Text = "0";
+        }
+
+        private void ButtonInput_Click(object sender, EventArgs e)
+        {
+            Button button = (Button) sender;
+            rtbOutput.Text = button.Text;
         }
     }
 }

@@ -79,6 +79,7 @@
             this.btnSeven.TabIndex = 2;
             this.btnSeven.Text = "7";
             this.btnSeven.UseVisualStyleBackColor = false;
+            this.btnSeven.Click += new System.EventHandler(this.ButtonInput_Click);
             // 
             // btnEight
             // 
@@ -91,6 +92,7 @@
             this.btnEight.TabIndex = 3;
             this.btnEight.Text = "8";
             this.btnEight.UseVisualStyleBackColor = false;
+            this.btnEight.Click += new System.EventHandler(this.ButtonInput_Click);
             // 
             // btnNine
             // 
@@ -103,6 +105,7 @@
             this.btnNine.TabIndex = 4;
             this.btnNine.Text = "9";
             this.btnNine.UseVisualStyleBackColor = false;
+            this.btnNine.Click += new System.EventHandler(this.ButtonInput_Click);
             // 
             // btnFour
             // 
@@ -115,6 +118,7 @@
             this.btnFour.TabIndex = 5;
             this.btnFour.Text = "4";
             this.btnFour.UseVisualStyleBackColor = false;
+            this.btnFour.Click += new System.EventHandler(this.ButtonInput_Click);
             // 
             // btnFive
             // 
@@ -127,6 +131,7 @@
             this.btnFive.TabIndex = 6;
             this.btnFive.Text = "5";
             this.btnFive.UseVisualStyleBackColor = false;
+            this.btnFive.Click += new System.EventHandler(this.ButtonInput_Click);
             // 
             // btnSix
             // 
@@ -139,6 +144,7 @@
             this.btnSix.TabIndex = 7;
             this.btnSix.Text = "6";
             this.btnSix.UseVisualStyleBackColor = false;
+            this.btnSix.Click += new System.EventHandler(this.ButtonInput_Click);
             // 
             // btnOne
             // 
@@ -151,6 +157,7 @@
             this.btnOne.TabIndex = 8;
             this.btnOne.Text = "1";
             this.btnOne.UseVisualStyleBackColor = false;
+            this.btnOne.Click += new System.EventHandler(this.ButtonInput_Click);
             // 
             // btnTwo
             // 
@@ -163,6 +170,7 @@
             this.btnTwo.TabIndex = 9;
             this.btnTwo.Text = "2";
             this.btnTwo.UseVisualStyleBackColor = false;
+            this.btnTwo.Click += new System.EventHandler(this.ButtonInput_Click);
             // 
             // btnThree
             // 
@@ -175,6 +183,7 @@
             this.btnThree.TabIndex = 10;
             this.btnThree.Text = "3";
             this.btnThree.UseVisualStyleBackColor = false;
+            this.btnThree.Click += new System.EventHandler(this.ButtonInput_Click);
             // 
             // btnZero
             // 
@@ -187,6 +196,7 @@
             this.btnZero.TabIndex = 11;
             this.btnZero.Text = "0";
             this.btnZero.UseVisualStyleBackColor = false;
+            this.btnZero.Click += new System.EventHandler(this.ButtonInput_Click);
             // 
             // btnDivide
             // 
@@ -266,6 +276,7 @@
             this.Controls.Add(this.btnSeven);
             this.Controls.Add(this.lsbHistory);
             this.Controls.Add(this.rtbOutput);
+            this.KeyPreview = true;
             this.Name = "frmMain";
             this.Text = "Form1";
             this.ResumeLayout(false);
