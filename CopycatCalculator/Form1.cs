@@ -2,11 +2,15 @@ namespace CopycatCalculator
 {
     public partial class frmMain : Form
     {
-        public int storedOperand = 0;
+        public int storedOperand { get; set; }
+        public string storedOperator { get; set; }
 
         public frmMain()
         {
             InitializeComponent();
+
+            storedOperand = 0;
+            storedOperator = String.Empty;
             
             lsbHistory.Font = new Font("Times New Roman", 16);
             lsbHistory.ForeColor = Color.White;
@@ -21,7 +25,8 @@ namespace CopycatCalculator
 
         private void ButtonInput_Click(object sender, EventArgs e)
         {
-            Button button = (Button) sender;
+            Button button = (Button)sender;
+
             if (storedOperand == 0)
             {
                 rtbOutput.Text = button.Text;
@@ -53,7 +58,15 @@ namespace CopycatCalculator
 
         private void OperatorInput_Click(object sender, EventArgs e)
         {
-            
+            Button button = (Button)sender;
+
+            if (storedOperator == String.Empty)
+            {
+                storedOperator = button.Text;
+
+                string output = $"{storedOperator} {storedOperand}\n{storedOperand}";
+                rtbOutput.Text = output;
+            }
         }
     }
 }
