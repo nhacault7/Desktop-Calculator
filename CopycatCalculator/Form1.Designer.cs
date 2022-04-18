@@ -1,6 +1,6 @@
 ﻿namespace CopycatCalculator
 {
-    partial class Form1
+    partial class frmMain
     {
         /// <summary>
         ///  Required designer variable.
@@ -51,7 +51,9 @@
             // 
             this.rtbOutput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.rtbOutput.Location = new System.Drawing.Point(12, 12);
+            this.rtbOutput.Multiline = false;
             this.rtbOutput.Name = "rtbOutput";
+            this.rtbOutput.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.rtbOutput.Size = new System.Drawing.Size(318, 96);
             this.rtbOutput.TabIndex = 0;
             this.rtbOutput.Text = "";
@@ -241,7 +243,7 @@
             this.btnEnter.Text = "=";
             this.btnEnter.UseVisualStyleBackColor = false;
             // 
-            // Form1
+            // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -264,7 +266,7 @@
             this.Controls.Add(this.btnSeven);
             this.Controls.Add(this.lsbHistory);
             this.Controls.Add(this.rtbOutput);
-            this.Name = "Form1";
+            this.Name = "frmMain";
             this.Text = "Form1";
             this.ResumeLayout(false);
 
