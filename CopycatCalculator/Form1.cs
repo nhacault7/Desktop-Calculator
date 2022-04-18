@@ -65,19 +65,41 @@ namespace CopycatCalculator
 
         private void KeyboardInput_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar >= 48 && e.KeyChar <= 57)
+            if (storedOperator == String.Empty)
             {
-                if (firstStoredOperand == 0)
+                if (e.KeyChar >= 48 && e.KeyChar <= 57)
                 {
-                    rtbOutput.Text = e.KeyChar.ToString();
+                    if (firstStoredOperand == 0)
+                    {
+                        rtbOutput.Text = e.KeyChar.ToString();
+                    }
+                    else
+                    {
+                        rtbOutput.AppendText(e.KeyChar.ToString());
+                    }
+
+                    firstStoredOperand = Convert.ToInt32(rtbOutput.Text);
+                }
+            }
+            else
+            {
+                string[] currentEquation = rtbOutput.Lines;
+                string secondOperand = currentEquation[1];
+
+                if (secondStoredOperand == 0)
+                {
+                    secondOperand = e.KeyChar.ToString();
+
                 }
                 else
                 {
-                    rtbOutput.AppendText(e.KeyChar.ToString());
+                    secondOperand += e.KeyChar.ToString();
                 }
-            }
 
-            firstStoredOperand = Convert.ToInt32(rtbOutput.Text);
+                secondStoredOperand = Convert.ToInt32(secondOperand);
+                string output = $"{storedOperator} {firstStoredOperand}\n{secondStoredOperand}";
+                rtbOutput.Text = output;
+            }
         }
 
         private void OperatorInput_Click(object sender, EventArgs e)
