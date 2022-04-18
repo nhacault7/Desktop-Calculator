@@ -20,14 +20,28 @@ namespace CopycatCalculator
         private void ButtonInput_Click(object sender, EventArgs e)
         {
             Button button = (Button) sender;
-            rtbOutput.Text = button.Text;
+            if (rtbOutput.Text == "0")
+            {
+                rtbOutput.Text = button.Text;
+            }
+            else
+            {
+                rtbOutput.AppendText(button.Text);
+            }
         }
 
         private void KeyboardInput_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar >= 48 && e.KeyChar <= 57)
             {
-                rtbOutput.Text = e.KeyChar.ToString();
+                if (rtbOutput.Text == "0")
+                {
+                    rtbOutput.Text = e.KeyChar.ToString();
+                }
+                else
+                {
+                    rtbOutput.AppendText(e.KeyChar.ToString());
+                }
             }
         }
     }
