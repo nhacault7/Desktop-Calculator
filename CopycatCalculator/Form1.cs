@@ -209,5 +209,16 @@ namespace CopycatCalculator
                 rtbOutput.Text = "Error";
             }
         }
+
+        private void Clear_Click(object sender, EventArgs e)
+        {
+            firstStoredOperand = String.Empty;
+            secondStoredOperand = String.Empty;
+            answer = String.Empty;
+            storedOperator = String.Empty;
+            isDefault = false;
+
+            rtbOutput.Text = "";
+        }
     }
 }
