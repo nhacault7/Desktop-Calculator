@@ -142,5 +142,46 @@ namespace CopycatCalculator
             rtbOutput.Text = answer.ToString();
             lsbHistory.Items.Add($"{firstStoredOperand} {storedOperator} {secondStoredOperand} = {answer}");
         }
+
+        private void ConvertToBinary_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (answer != 0)
+                {
+                    answer = Convert.ToInt32(Convert.ToString(answer, 2));
+                    rtbOutput.Text = answer.ToString();
+                    return;
+                }
+
+                if (secondStoredOperand != 0)
+                {
+                    secondStoredOperand = Convert.ToInt32(Convert.ToString(secondStoredOperand, 2));
+                    rtbOutput.Text = secondStoredOperand.ToString();
+                    return;
+                }
+
+                if (firstStoredOperand != 0)
+                {
+                    firstStoredOperand = Convert.ToInt32(Convert.ToString(firstStoredOperand, 2));
+                    rtbOutput.Text = firstStoredOperand.ToString();
+                    return;
+                }
+            } catch (OverflowException)
+            {
+                rtbOutput.Text = "Error";
+            }
+            
+        }
+
+        private void ConvertToLocational_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ConvertToDecimal_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -45,6 +45,9 @@
             this.btnSubtract = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnEnter = new System.Windows.Forms.Button();
+            this.btnBIN = new System.Windows.Forms.Button();
+            this.btnDEC = new System.Windows.Forms.Button();
+            this.btnLOC = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // rtbOutput
@@ -257,12 +260,54 @@
             this.btnEnter.UseVisualStyleBackColor = false;
             this.btnEnter.Click += new System.EventHandler(this.Calculate_Click);
             // 
+            // btnBIN
+            // 
+            this.btnBIN.BackColor = System.Drawing.Color.Gray;
+            this.btnBIN.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnBIN.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnBIN.Location = new System.Drawing.Point(12, 326);
+            this.btnBIN.Name = "btnBIN";
+            this.btnBIN.Size = new System.Drawing.Size(75, 47);
+            this.btnBIN.TabIndex = 17;
+            this.btnBIN.Text = "BIN";
+            this.btnBIN.UseVisualStyleBackColor = false;
+            this.btnBIN.Click += new System.EventHandler(this.ConvertToBinary_Click);
+            // 
+            // btnDEC
+            // 
+            this.btnDEC.BackColor = System.Drawing.Color.Gray;
+            this.btnDEC.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDEC.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnDEC.Location = new System.Drawing.Point(93, 326);
+            this.btnDEC.Name = "btnDEC";
+            this.btnDEC.Size = new System.Drawing.Size(75, 47);
+            this.btnDEC.TabIndex = 18;
+            this.btnDEC.Text = "DEC";
+            this.btnDEC.UseVisualStyleBackColor = false;
+            this.btnDEC.Click += new System.EventHandler(this.ConvertToDecimal_Click);
+            // 
+            // btnLOC
+            // 
+            this.btnLOC.BackColor = System.Drawing.Color.Gray;
+            this.btnLOC.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnLOC.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnLOC.Location = new System.Drawing.Point(174, 326);
+            this.btnLOC.Name = "btnLOC";
+            this.btnLOC.Size = new System.Drawing.Size(75, 47);
+            this.btnLOC.TabIndex = 19;
+            this.btnLOC.Text = "LOC";
+            this.btnLOC.UseVisualStyleBackColor = false;
+            this.btnLOC.Click += new System.EventHandler(this.ConvertToLocational_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(552, 450);
+            this.Controls.Add(this.btnLOC);
+            this.Controls.Add(this.btnDEC);
+            this.Controls.Add(this.btnBIN);
             this.Controls.Add(this.btnEnter);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnSubtract);
@@ -307,5 +352,8 @@
         private Button btnSubtract;
         private Button btnAdd;
         private Button btnEnter;
+        private Button btnBIN;
+        private Button btnDEC;
+        private Button btnLOC;
     }
 }
